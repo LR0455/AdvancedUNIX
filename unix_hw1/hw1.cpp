@@ -12,6 +12,7 @@
 #include <getopt.h>
 //#include <bits/regex.h>
 #include <regex>
+#include <sys/stat.h>
 
 using namespace std;
 # define IPV4 4
@@ -66,17 +67,18 @@ void ipv6(const string &tmp1,const string &tmp2, string &ip, string &port) {
     // **ip**
     int i, j, k;
     in6_addr *in6 = new in6_addr();
+    int ip6[16] = {};
+    for (i = 0, j = 0; i < tmp1.size(); i += 2, j++)
+        ip6[j] = HexToDec(tmp1[i]) * 16 + HexToDec(tmp1[i + 1]);
 
-    for (i = 0 ; i < tmp1.size() ; i += 2, j ++)
-        in6->__in6_u.__u6_addr8[j] = HexToDec(tmp1[i]) * 16 + HexToDec(tmp1[i+1]);
-    for (i = 0 ; i < 4 ; i ++) {
-        int bg = i * 4;
-        swap(in6->__in6_u.__u6_addr8[bg + i], in6->__in6_u.__u6_addr8[bg + i + 3]);
-        swap(in6->__in6_u.__u6_addr8[bg + i + 1], in6->__in6_u.__u6_addr8[bg + i + 2]);
-    }
+    for (i = 0 ; i < 4 ; i ++)
+        for (j = 0 ; j < 4 ; j ++) {
+            int lst = (i+1) * 4;
+            in6->__in6_u.__u6_addr8[lst - j - 1] = ip6[i*4 + j];
+        }
 
     char buf[200];
-    inet_ntop(AF_INET6, in6, buf, sizeof(buf));
+    inet_ntop(AF_INET6, in6, buf,sizeof(buf));
     ip = buf;
 
     // **port**
@@ -151,7 +153,7 @@ void openNetFile(const string path, const string proto, int flag) {
         }
 
     } else {
-        cout << "open file failed.\n";
+        cout << "open " << proto << "file failed:";
         cout << strerror(errno) << endl;
     }
 }
@@ -168,18 +170,18 @@ int main(int argc, char **argv)
             pif.pid += proc_ptr->d_name;
             //cout << pif.pid << endl;
 
-            string stat_path = "/proc/" + pif.pid + "/stat"; // find program name in stat
-            ifstream stat_file(stat_path);
+            string cmdline_path = "/proc/" + pif.pid + "/cmdline"; // find program name in stat
+            ifstream cmdline_file(cmdline_path);
             string line;
-            getline(stat_file, line);
+            getline(cmdline_file, line);
+
+            for (int i = 0 ; i < line.size() ; i ++)
+                if (line[i] == 0)
+                    line[i] = ' ';
+            pif.prg_name = line;
 
             bool start = false;
-            for (int i = 1; line[i] != ')' && i < line.size(); i++) { // store program name
-                if (line[i - 1] == '(')
-                    start = true;
-                if (start)
-                    pif.prg_name += line[i];
-            }
+
             //cout << pif.prg_name << endl;
 
             string fd_dir_path = "/proc/" + pif.pid + "/fd";
@@ -187,34 +189,39 @@ int main(int argc, char **argv)
             //cout << fd_dir_path << endl;
 
             DIR *fd_dir = opendir(fd_dir_path.c_str());
+
+            if (fd_dir == NULL) {
+                cout << pif.pid << " of fd_dir open failed :";
+                cout << strerror(errno) << endl;
+                continue;
+            }
+
             dirent *fd_ptr;
             while((fd_ptr = readdir(fd_dir)) != NULL) {
                 if (fd_ptr->d_name[0] != '.') {
                     string fd_path = fd_dir_path + "/" + fd_ptr->d_name;
-
-                    char buf[200] = {0};
-                    int buf_len = readlink(fd_path.c_str(), buf, sizeof(buf));
-                    if (buf[0] == 's') { // socket:[xxx]
-                        string str_inode;
-                        start = false;
-                        for (int i = 1; buf[i] != ']' && i < strlen(buf); i++) { // store inode
-                            if (buf[i - 1] == '[')
-                                start = true;
-                            if (start)
-                                str_inode += buf[i];
+                    struct stat status;
+                    if (stat(fd_path.c_str(), &status) == 0)
+                        if (S_ISSOCK(status.st_mode)) { // check is socket
+                            char buf[200] = {0};
+                            int buf_len = readlink(fd_path.c_str(), buf, sizeof(buf));
+                            string str_inode;
+                            start = false;
+                            for (int i = 1; buf[i] != ']' && i < strlen(buf); i++) { // store inode
+                                if (buf[i - 1] == '[')
+                                    start = true;
+                                if (start)
+                                    str_inode += buf[i];
+                            }
+                            pif.inode[str_inode] = true;
                         }
-                        pif.inode[str_inode] = true;
-                    }
-
                     prc_info_arr.push_back(pif);
                 }
             }
 
-//            for (map<string,bool>::iterator iter=pif.inode.begin() ; iter != pif.inode.end() ; iter ++)
-//                cout << iter->first << ' ';
-//            cout << endl;
         }
     }
+
     cout << "Proto  Local Address           Foreign Address        PID/Program name and arguments" << endl;
 
     // --tcp -> -t, --udp -> -u
@@ -235,10 +242,14 @@ int main(int argc, char **argv)
                 break;
         }
     }
-    for (int i = optind ; i < argc ; i ++) {
-        string arg = argv[i];
-        filter.push_back(arg);
+    string filter_line = "";
+    int i, j;
+    for (i = optind, j = 0 ; i < argc ; i ++, j ++) {
+        if (j)
+            filter_line += " ";
+        filter_line += argv[i];
     }
+    filter.push_back(filter_line);
 
     if (tcp || !udp) {
         openNetFile("/proc/net/tcp", "tcp", IPV4);
@@ -248,6 +259,5 @@ int main(int argc, char **argv)
         openNetFile("/proc/net/udp", "udp", IPV4);
         openNetFile("/proc/net/udp6", "udp6", IPV6);
     }
-
 
 }

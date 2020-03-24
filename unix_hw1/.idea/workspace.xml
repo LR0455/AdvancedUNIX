@@ -60,7 +60,9 @@
       <updated>1584593326288</updated>
       <workItem from="1584593336738" duration="118000" />
       <workItem from="1584593538822" duration="26461000" />
-      <workItem from="1584930276167" duration="10347000" />
+      <workItem from="1584930276167" duration="11662000" />
+      <workItem from="1584955922216" duration="4095000" />
+      <workItem from="1585016235249" duration="912000" />
     </task>
     <servers />
   </component>
@@ -76,10 +78,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1584593345598" />
-    <state x="656" y="236" width="672" height="617" key="search.everywhere.popup" timestamp="1584942691459">
+    <state x="656" y="236" width="672" height="617" key="search.everywhere.popup" timestamp="1584959566795">
       <screen x="67" y="27" width="1853" height="957" />
     </state>
     <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1584598540660" />
-    <state x="656" y="236" width="672" height="617" key="search.everywhere.popup/67.27.1853.957@67.27.1853.957" timestamp="1584942691459" />
+    <state x="656" y="236" width="672" height="617" key="search.everywhere.popup/67.27.1853.957@67.27.1853.957" timestamp="1584959566795" />
   </component>
 </project>
