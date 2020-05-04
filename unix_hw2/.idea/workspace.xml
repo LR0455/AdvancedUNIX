@@ -62,7 +62,8 @@
       <workItem from="1587709769276" duration="324000" />
       <workItem from="1587710295781" duration="8011000" />
       <workItem from="1587826080890" duration="6285000" />
-      <workItem from="1588584093872" duration="780000" />
+      <workItem from="1588584093872" duration="1184000" />
+      <workItem from="1588587435983" duration="58000" />
     </task>
     <servers />
   </component>
@@ -70,8 +71,8 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="343" y="301" width="609" height="384" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588584640846">
-      <screen x="67" y="27" width="1068" height="941" />
+    <state x="545" y="306" width="609" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588587071159">
+      <screen x="67" y="27" width="1853" height="957" />
     </state>
     <state x="343" y="301" width="609" height="384" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1068.941@67.27.1068.941" timestamp="1588584640846" />
     <state x="357" y="301" width="609" height="384" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1126.941@67.27.1126.941" timestamp="1587564664787" />
@@ -81,7 +82,7 @@
     <state x="389" y="301" width="640" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1246.941@67.27.1246.941" timestamp="1587527285775" />
     <state x="391" y="301" width="596" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1254.941@67.27.1254.941" timestamp="1587458020611" />
     <state x="391" y="301" width="589" height="384" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1257.941@67.27.1257.941" timestamp="1587625684723" />
-    <state x="545" y="306" width="604" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.957@67.27.1853.957" timestamp="1587715554678" />
+    <state x="545" y="306" width="609" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.957@67.27.1853.957" timestamp="1588587071159" />
     <state x="297" y="301" width="589" height="390" key="#com.intellij.fileTypes.FileTypeChooser/67.27.891.941@67.27.891.941" timestamp="1587566301134" />
     <state x="166" y="118" width="683" height="764" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587880735411">
       <screen x="67" y="27" width="891" height="948" />

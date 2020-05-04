@@ -59,9 +59,6 @@ int main(int argc, char **argv) {
     for (i = arg_opt_pos + 1, j = 0 ; i < argc ; i ++, j ++) {
         exec_arg[j] = argv[i];
     }
-    for (i = 0 ; i < exec_arg_size - 1 ; i ++)
-        printf("%s ", exec_arg[i]);
-    printf("\n");
 
     execvp(exec_arg[0], exec_arg);
 
