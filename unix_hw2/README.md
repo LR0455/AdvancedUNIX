@@ -9,10 +9,11 @@ You have to compile your source codes and generate 1) the shared object and 2) t
 # Requirements
 The list of monitored library calls is shown below. It covers several functions we have introduced in the class.
 
-chdir chmod chown creat fopen link mkdir open openat opendir readlink remove rename rmdir stat symlink unlink
+### chdir chmod chown creat fopen link mkdir open openat 
+### opendir readlink remove rename rmdir stat symlink unlink
 In addition to the aforementioned library calls, your sandbox ALWAYS has to reject the use of the following functions:
 
-execl execle execlp execv execve execvp system
+### execl execle execlp execv execve execvp system
 # Output Messages
 If an invalid access is detected, your program has to output an error message to indicate the error. If an access to an invalid path is detected, please show the target pathname and the corresponding operation. If the use of system or exec* is rejected, please also show the function name and the command line (for system) or the executable name (for exec*).
 
@@ -28,13 +29,14 @@ The grading policy for this homework is listed below:
 Please pack your files into a single tar.gz archive and submit your homework via the system. Please also provide a Makefile (used for compiling and linking your codes) and a README file (indicating what functions will be monitored) in your archive.
 
 # Hints
+
 Some hints that may simplify your work:
 
-We will test your program on Ubuntu 18.04. For the best compatibility, you may develop your program on Ubuntu 18.04.
-You may need to define macros to simplify your implementation.
-You may consider working with # and ## operators in macros.
-For variable-length function parameters, consider working with stdarg.h.
-You may consider working with __attribute__((constructor)). If you don't know what is that, please google for it!
-The implementation for some library functions may be different from its well-known prototypes. For example, the actual implementation for stat in GNU C library is __xstat. Therefore, you may be not able to find symbol stat in the binary. In case that you are not sure about the real symbols used in C library, try to work with readelf or nm to get the symbol names.
-Sample macro implementation is available here.
-You may use ltrace command to check what library functions are called by a program.
+1. We will test your program on Ubuntu 18.04. For the best compatibility, you may develop your program on Ubuntu 18.04.
+2. You may need to define macros to simplify your implementation.
+3. You may consider working with # and ## operators in macros.
+4. For variable-length function parameters, consider working with stdarg.h.
+5. You may consider working with __attribute__((constructor)). If you don't know what is that, please google for it!
+6. The implementation for some library functions may be different from its well-known prototypes. For example, the actual implementation for stat in GNU C library is __xstat. Therefore, you may be not able to find symbol stat in the binary. In case that you are not sure about the real symbols used in C library, try to work with readelf or nm to get the symbol names.
+7. Sample macro implementation is available here.
+8. You may use ltrace command to check what library functions are called by a program.
