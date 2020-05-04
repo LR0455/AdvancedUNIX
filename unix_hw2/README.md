@@ -26,26 +26,6 @@
 <![endif]-->
 <style></style>
 <title>Chun-Ying Huang</title>
-<style>
-code {
-	margin: 8px 0;
-	white-space: pre;
-	display: block;
-}
-.term {
-	font-family: monospace;
-	font-weight: bold;
-	display: inline-block;
-	width: 12%;
-}
-.texttt {
-	font-family: monospace;
-	font-weight: bold;
-}
-em {
-	color: blue;
-}
-</style>
 </head>
 <!-- body -->
 <body role="document">
