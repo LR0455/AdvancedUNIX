@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/unix_hw2.dir/main.cpp.o CMakeFiles/unix_hw2.dir/example/getuid.c.o CMakeFiles/unix_hw2.dir/example/inject1.c.o  -o unix_hw2 
