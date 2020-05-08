@@ -1,4 +1,3 @@
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -11,4 +10,3 @@ void orw() {
     read(fd, buf, sizeof(buf));
     puts(buf);
 }
-

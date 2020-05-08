@@ -10,6 +10,7 @@
 #include <seccomp.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include "ftk_func.c"
 
 extern void find_the_key();
 

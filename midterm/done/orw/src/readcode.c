@@ -12,7 +12,7 @@ void readCode () {
     puts("Note: you have to include all the required header files by yourself.\n");
     puts("Please paste your codes below, and");
     puts("use a single line containing only '//EOF' (without quotes) to submit your codes.");
-    puts("=====\n");
+    puts("=====");
    
     fclose(fopen("orw_func.c", "w"));
 

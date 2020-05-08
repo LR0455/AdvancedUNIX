@@ -2,5 +2,5 @@ all:
 # sudo apt-get install libseccomp-dev
 	gcc -g readcode.c -o readcode -lseccomp
 	./readcode
-	gcc -g orw_main.c -o orw_main -lseccomp
-	./orw_main
+	gcc -g find_the_key_main.c -o ftk_main -lseccomp
+	./ftk_main
