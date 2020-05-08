@@ -1,7 +1,7 @@
 from pwn import *
 
 #conn = remote('aup.zoolab.org', 38152)
-conn = process('./simple_arithmetic')
+conn = process('../src/simple_arithmetic')
 
 # welcome
 conn.recvline()
