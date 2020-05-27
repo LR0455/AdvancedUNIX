@@ -1,0 +1,14 @@
+mov eax, [0x600000]
+sub ecx, [0x600004]
+mul ecx
+mov ecx, eax
+
+mov eax, [0x600008]
+sub eax, ebx
+
+mov ebx, eax
+mov eax, ecx
+cdq
+idiv ebx
+mov [0x600008], eax
+done:

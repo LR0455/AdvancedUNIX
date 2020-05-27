@@ -1,0 +1,5 @@
+imul eax, edi, 0x2
+imul ebx, edi, 0x3
+imul ecx, edi, 0x5
+imul edx, edi, 0x9
+done:

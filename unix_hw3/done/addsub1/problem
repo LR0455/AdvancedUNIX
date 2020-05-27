@@ -1,0 +1,7 @@
+addsub1:
+        eax = 0x287884c1
+        eax = eax + 0x7c4ed4a8 
+        eax = eax - 0xd30b07c1
+======
+======
+Enter your codes: (type 'done:' when done)

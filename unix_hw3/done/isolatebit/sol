@@ -1,0 +1,5 @@
+mov ecx, 0x0fe0
+and ecx, eax
+shl ecx, 3
+mov [0x600000], ch
+done:

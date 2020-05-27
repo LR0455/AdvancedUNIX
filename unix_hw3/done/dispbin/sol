@@ -1,0 +1,18 @@
+    mov bx, 2 
+    mov cx, ax
+FOR:
+    cmp rsi, 0x10
+    jge EXIT
+    
+    div bx
+    add rdx, 0x30
+
+    mov rdi, rsi
+    neg rdi
+	mov [0x60000f+rdi], dl
+
+    mov rdx, 0
+	inc rsi
+    jmp FOR
+EXIT:
+done:

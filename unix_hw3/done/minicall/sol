@@ -1,0 +1,4 @@
+    call b
+b:
+    pop rax
+done:

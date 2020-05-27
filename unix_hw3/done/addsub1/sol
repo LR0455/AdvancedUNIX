@@ -1,0 +1,4 @@
+mov eax, 0x287884c1
+add eax, 0x7c4ed4a8
+sub eax, 0xd30b07c1
+done:

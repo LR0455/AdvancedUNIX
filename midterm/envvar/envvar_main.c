@@ -14,8 +14,10 @@
 #include <seccomp.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+//#include "env_func.c"
+#include "envvar_sol.c"
 
-extern void envvar(int);
+//extern void envvar(int);
 
 char buf[8192];
 static pid_t child = 0;
@@ -114,6 +116,7 @@ int main() {
 		close(fdin[1]);
 		close(fdout[0]);
 		do if((s = read(fdin[0], buf, sizeof(buf))) > 0) {
+            printf("buf:%s\n", buf);
 			if(strncmp(buf, CHECKENV, s) != 0) break;
 			if(check_envvar(secret) < 0) break;
 			printf("Bingo!\n");

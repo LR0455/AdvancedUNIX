@@ -1,0 +1,24 @@
+; mov eax, [0x600000]
+; mov ebx, 26
+; mul ebx
+; mov [0x600004], eax
+
+; 26 = (11010)2
+mov eax, [0x600000]
+
+mov ebx, eax
+shl ebx, 4
+
+mov ecx, eax
+shl ecx, 3
+
+mov edx, eax
+shl edx, 1
+
+mov eax, 0
+add eax, ebx
+add eax, ecx
+add eax, edx
+
+mov [0x600004], eax
+done:

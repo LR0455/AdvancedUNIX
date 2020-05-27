@@ -1,0 +1,17 @@
+        mov rdi, 0
+FOR:
+        cmp rdi, 15
+        jge EXIT
+
+        mov al, [0x600000 + rdi]
+        cmp al, 0x61 ; 'a' = 0x61
+        jge LOWER
+
+        add al, 0x20 ; str1[i] - 'A' + 'a' = str1[i] + 0x20
+LOWER:
+        mov [0x600010 + rdi], al
+
+        inc rdi
+        jmp FOR
+EXIT:
+done:

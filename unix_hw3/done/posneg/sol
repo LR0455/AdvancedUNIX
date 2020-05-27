@@ -1,0 +1,41 @@
+    mov edi, 1 ; 1
+    sub esi, 1 ; -1
+    
+; eax
+    cmp eax, 0
+    jge A_GE
+    mov [0x600000], esi
+    jmp A_N
+A_GE:
+    mov [0x600000], edi
+A_N:
+
+; ebx
+    cmp ebx, 0
+    jge B_GE
+    mov [0x600004], esi
+    jmp B_N
+B_GE:
+    mov [0x600004], edi
+B_N:
+
+; ecx
+    cmp ecx, 0
+    jge C_GE
+    mov [0x600008], esi
+    jmp C_N
+C_GE:
+    mov [0x600008], edi
+C_N:
+
+; edx
+    cmp edx, 0
+    jge D_GE
+    mov [0x60000c], esi
+    jmp D_N
+D_GE:
+    mov [0x60000c], edi
+D_N:
+
+done:
+

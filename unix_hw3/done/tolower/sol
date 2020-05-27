@@ -1,0 +1,9 @@
+    mov al, [0x600000]
+    cmp al, 0x61 ; 'a' = 0x61
+    jle L1
+
+    sub al, 0x20
+L1:
+    mov [0x600001], al
+
+done:

@@ -1,0 +1,7 @@
+mov eax, [0x600000]
+mov edx, 0xffffffff
+imul edx
+mov edx, [0x600004]
+imul edx
+add eax, [0x600008]
+done:

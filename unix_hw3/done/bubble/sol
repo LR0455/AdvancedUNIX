@@ -1,0 +1,35 @@
+	; i=0
+    mov rdi, 0
+FOR1:
+	; i>=10 -> L5
+    cmp rdi, 10
+    jge EXIT
+
+    ; j=i+1
+    mov rsi, rdi
+    inc rsi    
+FOR2:
+	; j>=10 -> L4
+	cmp rsi, 10
+	jge END1
+
+	; a[i] < a[j] -> L3
+	mov eax, [0x600000 + rdi*4]
+	mov ebx, [0x600000 + rsi*4]
+	cmp eax, ebx
+	jb END2
+
+	; a[i] > a[j] -> swap(a[i], a[j])
+	mov [0x600000 + rdi*4], ebx
+	mov [0x600000 + rsi*4], eax
+END2:	
+	; j++
+	inc rsi
+	jmp FOR2
+END1:
+	; i++
+    inc rdi
+    jmp FOR1
+EXIT:
+
+done:

@@ -1,0 +1,21 @@
+    push 10
+    call r
+    jmp exit
+r:
+    mov rbp, rsp
+
+    mov edx, DWORD PTR [ebp+0x8] ; r
+    cmp rdx, 0
+    jg L1
+    ret
+L1:
+    add rax, rdx
+    
+    dec rdx
+    push rdx
+    call r
+    pop rdx
+    ret
+
+exit:
+done:

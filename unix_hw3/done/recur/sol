@@ -1,0 +1,49 @@
+    mov rbx, 2
+    mov rcx, 3
+
+    mov edi, 26 ; r(n)
+    call r
+    jmp EXIT
+r:
+    push rbp
+    mov ebp, esp
+    sub esp, 0x20
+    mov DWORD PTR [ebp-0x20], edi ; [ebp-0x20] = n
+
+    ; n = 0 -> eax = 0 -> ret
+    cmp DWORD PTR [ebp-0x20], 0
+    jg L1
+    mov rax, 0
+    jmp RET
+L1:
+	; n = 1 -> eax = 1 -> ret
+	cmp DWORD PTR [ebp-0x20], 1
+    jg L2
+	mov rax, 1
+	jmp RET
+L2:
+    ; r(n-1)
+    mov edi, DWORD PTR [ebp-0x20]
+    sub edi, 1
+    call r
+    
+    ; 2*r(n-1)
+    mul rbx
+    push rax
+
+    ; r(n-2) 
+    mov edi, DWORD PTR [ebp-0x20]
+    sub edi, 2
+    call r
+
+    pop rsi ; get store [2*r(n-1)]
+
+    ; 3*r(n-2) + 2*r(n-1)
+	mul rcx
+	add rax, rsi
+
+RET:
+	leave
+	ret
+EXIT:
+done:
